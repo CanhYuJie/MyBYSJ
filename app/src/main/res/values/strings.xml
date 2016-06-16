@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">学生信息/考勤管理系统</string>
+    <string name="app_name">你窝咩</string>
+    <string name="version_number_is_wrong">warming:Can\'t get version info</string>
 </resources>
