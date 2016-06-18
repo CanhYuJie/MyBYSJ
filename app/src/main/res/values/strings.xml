@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">你窝咩</string>
     <string name="version_number_is_wrong">warming:Can\'t get version info</string>
+    <string name="user_login">用户登录</string>
 </resources>

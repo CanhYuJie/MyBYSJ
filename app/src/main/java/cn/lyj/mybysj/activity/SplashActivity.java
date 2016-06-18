@@ -16,17 +16,23 @@ import android.view.animation.Animation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hyphenate.chat.EMChatManager;
+import com.hyphenate.chat.EMClient;
+
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import cn.lyj.mybysj.BysjApplication;
 import cn.lyj.mybysj.R;
+@ContentView(R.layout.activity_splash)
 public class SplashActivity extends AppCompatActivity {
     private final String TAG = SplashActivity.class.getName();
+    @ViewInject(R.id.appVersion)
     private TextView versionText;
+    @ViewInject(R.id.rootLayout)
     private RelativeLayout rootLayout;
     private boolean isFirstIn = false;
-    private static final int sleepTime = 2000;
     private static final int GO_HOME = 1000;
     private static final int GO_GUIDE = 1001;
     private static final int GO_LOGIN = 1002;
@@ -49,7 +55,7 @@ public class SplashActivity extends AppCompatActivity {
     };
 
     private void goLogin() {
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(this,StuLoginActivity.class);
         startActivity(intent);
         finish();
     }
@@ -61,9 +67,9 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void goHome() {
-//        Intent intent = new Intent(this,MainActivity.class);
-//        startActivity(intent);
-//        finish();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -72,8 +78,7 @@ public class SplashActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_splash);
-        initView();
+        x.view().inject(this);
 
         versionText.setText(getVersion());
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.3f, 1.0f);
@@ -96,7 +101,15 @@ public class SplashActivity extends AppCompatActivity {
                     editor.commit();
                 }else {
                     //判断是否已经登录，如果登录了就进入主界面，没有就进入登录页面
-                    Log.e("yujie","不是第一次登录");
+                    String loginName = sp.getString("loginName", null);
+                    String loginPwd = sp.getString("loginPwd", null);
+                    if(loginName!=null&loginPwd!=null){
+                        BysjApplication.getInstance().setLoginName(loginName);
+                        BysjApplication.getInstance().setLoginPwd(loginPwd);
+                        mHandler.sendEmptyMessage(GO_HOME);
+                    }else {
+                        mHandler.sendEmptyMessage(GO_LOGIN);
+                    }
                 }
                 finish();
             }
@@ -106,11 +119,6 @@ public class SplashActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void initView() {
-        versionText = (TextView) findViewById(R.id.appVersion);
-        rootLayout = (RelativeLayout) findViewById(R.id.rootLayout);
     }
 
     @Override

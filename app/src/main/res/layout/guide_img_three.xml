@@ -13,7 +13,7 @@
         android:id="@+id/goMainBtn"
         android:text="进入"
         android:textSize="30dp"
-        android:textColor="#fff"
+        android:textColor="#393030"
         android:background="@drawable/btn_shape"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

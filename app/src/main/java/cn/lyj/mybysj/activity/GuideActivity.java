@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -21,23 +24,21 @@ import java.util.TimerTask;
 import cn.lyj.mybysj.R;
 import cn.lyj.mybysj.adapter.GuideViewPagerAdapter;
 import cn.lyj.mybysj.animations.RokeAnimation;
-
+@ContentView(R.layout.activity_guide)
 public class GuideActivity extends AppCompatActivity {
+    @ViewInject(R.id.guideViewPager)
     private ViewPager vp;
     private GuideViewPagerAdapter viewPagerAdapter;
     private ArrayList<View> viewArrayList;
     private ImageView[] dots;
     private int[] ids = {R.id.iv1,R.id.iv2,R.id.iv3};
-    private Timer timer;
     private Button goMainBtn;
-    private boolean isOpen = true;
-    private int index = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guide);
+        x.view().inject(this);
         initView();
         initDots();
         initAdapter();
@@ -58,7 +59,7 @@ public class GuideActivity extends AppCompatActivity {
         goMainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(GuideActivity.this,LoginActivity.class);
+                Intent i = new Intent(GuideActivity.this,StuLoginActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -115,15 +116,5 @@ public class GuideActivity extends AppCompatActivity {
         viewArrayList.add(inflater.inflate(R.layout.guide_img_two,null));
         viewArrayList.add(inflater.inflate(R.layout.guide_img_three,null));
         vp = (ViewPager) findViewById(R.id.guideViewPager);
-    }
-
-    @Override
-    protected void onDestroy() {
-        isOpen = false;
-        if (timer != null) {
-            timer.cancel();// 退出计时器
-        }
-        timer = null;
-        super.onDestroy();
     }
 }
