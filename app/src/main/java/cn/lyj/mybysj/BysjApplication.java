@@ -8,6 +8,13 @@ import com.hyphenate.chat.EMOptions;
 
 import org.xutils.x;
 
+import java.util.ArrayList;
+
+import cn.lyj.mybysj.bean.BedRoom;
+import cn.lyj.mybysj.bean.ClassObj;
+import cn.lyj.mybysj.bean.Department;
+import cn.lyj.mybysj.bean.Floor;
+
 /**
  * Created by Administrator on 2016/6/16.
  */
@@ -35,6 +42,42 @@ public class BysjApplication extends Application{
 
     private String LoginName;
     private String loginPwd;
+    private ArrayList<Department> departments;
+    private ArrayList<ClassObj> classObjs;
+    private ArrayList<BedRoom> bedRooms;
+    private ArrayList<Floor> floors;
+
+    public ArrayList<Floor> getFloors() {
+        return floors;
+    }
+
+    public void setFloors(ArrayList<Floor> floors) {
+        this.floors = floors;
+    }
+
+    public ArrayList<BedRoom> getBedRooms() {
+        return bedRooms;
+    }
+
+    public void setBedRooms(ArrayList<BedRoom> bedRooms) {
+        this.bedRooms = bedRooms;
+    }
+
+    public ArrayList<ClassObj> getClassObjs() {
+        return classObjs;
+    }
+
+    public void setClassObjs(ArrayList<ClassObj> classObjs) {
+        this.classObjs = classObjs;
+    }
+
+    public ArrayList<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(ArrayList<Department> departments) {
+        this.departments = departments;
+    }
 
     public String getLoginName() {
         return LoginName;

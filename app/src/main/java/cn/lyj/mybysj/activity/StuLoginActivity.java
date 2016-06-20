@@ -29,6 +29,7 @@ import cn.lyj.mybysj.I;
 import cn.lyj.mybysj.R;
 import cn.lyj.mybysj.bean.Student;
 import cn.lyj.mybysj.bean.User;
+import cn.lyj.mybysj.utils.Utils;
 
 @ContentView(R.layout.activity_stu_login)
 public class StuLoginActivity extends AppCompatActivity {
@@ -55,7 +56,7 @@ public class StuLoginActivity extends AppCompatActivity {
 
     @Event(type = View.OnClickListener.class,value = R.id.register)
     private void register(View view){
-        Log.e("yujie","register");
+        startActivity(new Intent(context,RegisterActivity.class));
     }
 
     @Event(type = View.OnClickListener.class,value = R.id.userLogin)
@@ -85,15 +86,21 @@ public class StuLoginActivity extends AppCompatActivity {
     }
 
     private void initUserName() {
-        SharedPreferences sp = getSharedPreferences("loginName",MODE_PRIVATE);
-        String loginName = sp.getString("loginName", null);
-        if(loginName!=null){
-            login_userName.setText(loginName);
+        String register_just = getIntent().getStringExtra("register_just");
+        if(register_just!=null){
+            login_userName.setText(register_just);
+        }else {
+            SharedPreferences sp = getSharedPreferences("loginName",MODE_PRIVATE);
+            String loginName = sp.getString("loginName", null);
+            if(loginName!=null){
+                login_userName.setText(loginName);
+            }
         }
     }
 
     @Event(type = View.OnClickListener.class,value = R.id.login_button)
     private void login(View view){
+        Utils.logOut();
         if(validLogin()){
             pd.show();
             RequestParams requestParams = new RequestParams(BysjApplication.INF_ROOT_SERVER);
@@ -115,6 +122,7 @@ public class StuLoginActivity extends AppCompatActivity {
                                 public void onSuccess() {
                                     Log.e("yujie","登录环信服务器成功");
                                     pd.dismiss();
+                                    Log.e("yujie",currentUserName+"\n"+currentPassWord);
                                     startActivity(new Intent(context,StuMainActivity.class));
                                 }
 

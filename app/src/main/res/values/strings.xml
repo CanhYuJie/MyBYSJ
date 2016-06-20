@@ -2,4 +2,12 @@
     <string name="app_name">你窝咩</string>
     <string name="version_number_is_wrong">warming:Can\'t get version info</string>
     <string name="user_login">用户登录</string>
+    <string name="stu_register">学生注册</string>
+    <string name="sexStr">性别</string>
+    <string name="sex_boy">男</string>
+    <string name="sex_girl">女</string>
+    <string name="department">系部</string>
+    <string name="classObj">班级</string>
+    <string name="bedroom">寝室</string>
+    <string name="register_success">注册成功</string>
 </resources>
