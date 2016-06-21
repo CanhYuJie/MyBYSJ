@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 
 import java.io.File;
@@ -80,6 +81,26 @@ public class Utils {
     }
 
     public static void logOut(){
-        EMClient.getInstance().logout(true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                EMClient.getInstance().logout(true, new EMCallBack() {
+                    @Override
+                    public void onSuccess() {
+                        Log.e("yujie",EMClient.getInstance().getCurrentUser().toString()+"登出成功");
+                    }
+
+                    @Override
+                    public void onError(int i, String s) {
+
+                    }
+
+                    @Override
+                    public void onProgress(int i, String s) {
+
+                    }
+                });
+            }
+        }).start();
     }
 }
