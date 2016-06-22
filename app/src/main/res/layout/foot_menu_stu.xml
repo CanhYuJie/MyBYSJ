@@ -33,7 +33,6 @@
                         android:id="@+id/stuMainMsgRadioBtn"
                         android:drawableTop="@drawable/chat"
                         android:textAlignment="center"
-                        android:background="@drawable/selectd"
                         android:text="@string/chatMsg"/>
                     <TextView
                         android:layout_width="20dp"
@@ -62,7 +61,6 @@
                     android:layout_weight="1"
                     android:button="@null"
                     android:id="@+id/stuMainContactRadioBtn"
-                    android:background="@drawable/selectd"
                     android:textAlignment="center"
                     android:drawableTop="@drawable/user"
                     android:text="@string/contacts"/>

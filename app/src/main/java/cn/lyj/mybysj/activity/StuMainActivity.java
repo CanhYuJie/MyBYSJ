@@ -55,9 +55,7 @@ public class StuMainActivity extends AppCompatActivity {
         stuMainContactRadioBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.e("yujie","123");
                 if(isChecked){
-                    Log.e("yujie","456"+isChecked);
                     stuMainMsgRadioBtn.setChecked(false);
                     stuMainViewPager.setCurrentItem(1);
                 }
