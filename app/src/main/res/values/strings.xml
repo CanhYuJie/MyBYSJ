@@ -19,4 +19,7 @@
     <string name="floorManager">楼宇管理</string>
     <string name="roomManager">寝室管理</string>
     <string name="setting">系统设置</string>
+    <string name="readStuInfo">查看学生信息</string>
+    <string name="addStuInfo">录入学生信息</string>
+    <string name="seaStuInfo">查询学生信息</string>
 </resources>

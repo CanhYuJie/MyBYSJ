@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/add_stu"
+        android:icon="@drawable/add_icon"
+        android:title="添加学生"
+        app:showAsAction="always"
+        />
+    <item android:id="@+id/sea_stu"
+        android:title="查询学生"
+        app:showAsAction="always"
+        android:icon="@drawable/sea_icon"
+        />
+</menu>
