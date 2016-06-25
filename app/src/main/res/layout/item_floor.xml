@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    app:cardBackgroundColor="#fff"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
+    app:contentPadding="2dp"
+    android:id="@+id/item_root_layout"
+    android:layout_height="80dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <cn.lyj.mybysj.views.CircleTextImageView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            app:border_color="@android:color/darker_gray"
+            app:border_width="2dp"
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="center"
+            android:id="@+id/stuAvatar"
+            android:src="@drawable/floormanager"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/floorName"
+            android:textColor="#000"
+            android:textSize="25dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:text="尚能楼"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

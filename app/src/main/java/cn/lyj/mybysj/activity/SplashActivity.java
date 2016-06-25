@@ -262,6 +262,10 @@ public class SplashActivity extends AppCompatActivity {
                 params.addParameter(I.KEY_REQUEST,I.REQUEST_GETBEDROOMINFO);
                 params.addParameter(I.GETBEDROOMINFO.OPTUSER,I.CLIENTUSER);
                 break;
+            case CODE_FLOOR:
+                params.addParameter(I.KEY_REQUEST,I.REQUEST_GETFLOORINFO);
+                params.addParameter(I.GETFLOORINFO.OPTUSER,I.CLIENTUSER);
+                break;
         }
         return params;
     }

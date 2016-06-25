@@ -61,9 +61,6 @@
         <activity android:name=".activity.StuLoginActivity" />
         <activity android:name=".activity.StuMainActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.ReadStuInfoActivity" />
-        <activity android:name=".activity.AddStuInfoActivity" />
-        <activity android:name=".activity.SeaStuInfoActivity"></activity>
     </application>
 
 </manifest>
