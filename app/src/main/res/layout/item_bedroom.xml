@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/floor_Root_layout"
+        android:id="@+id/room_Root_layout"
         android:orientation="horizontal">
         <cn.lyj.mybysj.views.CircleTextImageView
             android:layout_width="55dp"
@@ -22,16 +22,41 @@
             android:layout_marginLeft="30dp"
             android:layout_gravity="center"
             android:id="@+id/stuAvatar"
-            android:src="@drawable/floormanager"
+            android:src="@drawable/roommanager"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/floorName"
+            android:id="@+id/roomName"
             android:textColor="#000"
             android:textSize="25dp"
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
-            android:text="尚能楼"/>
+            android:text="1A410"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="金桂苑"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:id="@+id/bFloor"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="A区"
+                android:textSize="16dp"
+                android:id="@+id/bArea"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

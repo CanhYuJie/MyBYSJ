@@ -46,6 +46,15 @@ public class BysjApplication extends Application{
     private ArrayList<ClassObj> classObjs;
     private ArrayList<BedRoom> bedRooms;
     private ArrayList<Floor> floors;
+    private ArrayList<String> floorStr;
+
+    public ArrayList<String> getFloorStr() {
+        return floorStr;
+    }
+
+    public void setFloorStr(ArrayList<String> floorStr) {
+        this.floorStr = floorStr;
+    }
 
     public ArrayList<Floor> getFloors() {
         return floors;

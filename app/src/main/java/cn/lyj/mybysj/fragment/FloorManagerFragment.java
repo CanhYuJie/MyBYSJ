@@ -2,6 +2,7 @@ package cn.lyj.mybysj.fragment;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,7 +80,9 @@ public class FloorManagerFragment extends Fragment {
                             ObjectMapper om = new ObjectMapper();
                             try {
                                 floors = Utils.array2List(om.readValue(result, Floor[].class));
+                                Log.e("yujie",floors.toString());
                                 adapter.refresh(floors);
+                                refreshLayout.setRefreshing(false);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -122,7 +126,7 @@ public class FloorManagerFragment extends Fragment {
                         btn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                String floorName = floorTxt.getText().toString();
+                                final String floorName = floorTxt.getText().toString();
                                 if(floorName.isEmpty()){
                                     floorTxt.setError("不能为空");
                                     floorTxt.requestFocus();
@@ -132,6 +136,7 @@ public class FloorManagerFragment extends Fragment {
                                 params.addParameter(I.KEY_REQUEST,I.REQUEST_ADDFLOORINTO);
                                 params.addParameter(I.ADDFLOORINFO.FLOORNAME,floorName);
                                 params.addParameter(I.ADDFLOORINFO.OPTUSER,I.CLIENTUSER);
+                                Log.e("yujie",params.getUri()+"\n"+params.toString());
                                 x.http().post(params, new Callback.CommonCallback<String>() {
                                     @Override
                                     public void onSuccess(String result) {
@@ -141,6 +146,7 @@ public class FloorManagerFragment extends Fragment {
                                                 Result value = om.readValue(result, Result.class);
                                                 if(value.getMsg().equals("添加成功")){
                                                     dialog.dismiss();
+                                                    adapter.addItem(new Floor(floorName));
                                                     Toast.makeText(context,"添加成功",Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (IOException e) {
@@ -180,6 +186,61 @@ public class FloorManagerFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
         adapter = new FloorAdapter(context,floors);
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemActionListener(new FloorAdapter.OnItemActionListener() {
+            @Override
+            public void onItemClickListener(View v, final int position, final Floor floor) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("删除楼宇信息")
+                        .setMessage("确定删除吗?")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                RequestParams params = new RequestParams(BysjApplication.INF_ROOT_SERVER);
+                                params.addParameter(I.KEY_REQUEST,I.REQUEST_DELFLOORINTO);
+                                params.addParameter(I.DELFLOORINFO.FLOOR,floor.getFloor());
+                                params.addParameter(I.DELFLOORINFO.OPTUSER,I.CLIENTUSER);
+                                x.http().get(params, new Callback.CommonCallback<String>() {
+                                    @Override
+                                    public void onSuccess(String result) {
+                                        if(result!=null){
+                                            ObjectMapper om = new ObjectMapper();
+                                            try {
+                                                Result value = om.readValue(result, Result.class);
+                                                if(value.getMsg().equals("删除成功")){
+                                                    adapter.removeItem(position);
+                                                    initRefresh();
+                                                    Toast.makeText(context,"删除成功",Toast.LENGTH_SHORT).show();
+                                                }else {
+                                                    adapter.notifyDataSetChanged();
+                                                    Toast.makeText(context,"删除失败",Toast.LENGTH_SHORT).show();
+                                                }
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable ex, boolean isOnCallback) {
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(CancelledException cex) {
+
+                                    }
+
+                                    @Override
+                                    public void onFinished() {
+
+                                    }
+                                });
+                            }
+                        })
+                        .setNegativeButton("退出",null)
+                        .create().show();
+            }
+        });
     }
 
     private void initData() {
