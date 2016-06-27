@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/stuclass"
                     android:text="计算机信息管理14-2班"
-                    android:textSize="15dp"
+                    android:textSize="13dp"
                     android:textColor="#5b5858"
                     android:layout_gravity="center"
                     />

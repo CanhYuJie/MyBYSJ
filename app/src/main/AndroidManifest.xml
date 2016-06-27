@@ -22,7 +22,7 @@
     <application
         android:name=".BysjApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/appicon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -61,6 +61,8 @@
         <activity android:name=".activity.StuLoginActivity" />
         <activity android:name=".activity.StuMainActivity" />
         <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.ResetPwdActivity" />
+        <activity android:name=".activity.CatLogActivity" />
     </application>
 
 </manifest>

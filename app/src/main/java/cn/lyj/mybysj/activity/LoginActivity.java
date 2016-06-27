@@ -94,6 +94,8 @@ public class LoginActivity extends AppCompatActivity  {
                     try {
                         User user = om.readValue(result,User.class);
                         if(user!=null){
+                            BysjApplication.getInstance().setCurrentUser(user.getUserName());
+                            Log.e("yujie","当前登录的用户是："+BysjApplication.getInstance().getCurrentUser());
                             SharedPreferences sp = getSharedPreferences("loginName",MODE_PRIVATE);
                             sp.edit().putString("loginName",currentUserName).commit();
                             sp.edit().putString("loginPwd",currentPassWord).commit();

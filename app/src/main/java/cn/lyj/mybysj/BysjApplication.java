@@ -47,6 +47,15 @@ public class BysjApplication extends Application{
     private ArrayList<BedRoom> bedRooms;
     private ArrayList<Floor> floors;
     private ArrayList<String> floorStr;
+    private String currentUser;
+
+    public String getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(String currentUser) {
+        this.currentUser = currentUser;
+    }
 
     public ArrayList<String> getFloorStr() {
         return floorStr;
