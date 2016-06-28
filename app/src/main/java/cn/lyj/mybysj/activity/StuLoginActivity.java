@@ -91,8 +91,8 @@ public class StuLoginActivity extends AppCompatActivity {
         if(register_just!=null){
             login_userName.setText(register_just);
         }else {
-            SharedPreferences sp = getSharedPreferences("loginName",MODE_PRIVATE);
-            String loginName = sp.getString("loginName", null);
+            SharedPreferences sp = getSharedPreferences("StuloginName",MODE_PRIVATE);
+            String loginName = sp.getString("StuloginName", null);
             if(loginName!=null){
                 login_userName.setText(loginName);
             }
@@ -124,6 +124,7 @@ public class StuLoginActivity extends AppCompatActivity {
                                     Log.e("yujie","登录环信服务器成功");
                                     pd.dismiss();
                                     Log.e("yujie",currentUserName+"\n"+currentPassWord);
+                                    getSharedPreferences("StuloginName",MODE_PRIVATE).edit().putString("StuloginName",currentUserName).commit();
                                     startActivity(new Intent(context,StuMainActivity.class));
                                 }
 

@@ -30,9 +30,6 @@ import cn.lyj.mybysj.fragment.ContactFragment;
 @ContentView(R.layout.activity_stu_main)
 public class StuMainActivity extends AppCompatActivity {
     private Context context;
-    private ArrayList<Floor> floors;
-    private ArrayList<String> areas;
-    private ArrayList<BedRoom> bedRooms;
     @ViewInject(R.id.stuMainMsgRadioBtn)
     private RadioButton stuMainMsgRadioBtn;
     @ViewInject(R.id.stuMainContactRadioBtn)
@@ -46,7 +43,6 @@ public class StuMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
         context = this;
-        initData();
         initViewPagerAdapter();
         setMoveListener();
     }
@@ -93,15 +89,6 @@ public class StuMainActivity extends AppCompatActivity {
         });
     }
 
-    private void initData() {
-        floors = BysjApplication.getInstance().getFloors();
-        bedRooms = BysjApplication.getInstance().getBedRooms();
-        areas = new ArrayList<>();
-        areas.add("A区");
-        areas.add("B区");
-        areas.add("C区");
-        areas.add("D区");
-    }
 
     //  ┏┓　　　┏┓
     // ┏┛┻━━━┛┻┓
